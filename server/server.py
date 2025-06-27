@@ -1,7 +1,7 @@
 # Importing necessary modules from Flask and another Python file (util.py)
 from flask import Flask, request, jsonify, render_template  # Added render_template to serve index.html
 from flask_cors import CORS
-import util  # This is a custom Python file you created for utility functions
+from . import util  # This is a custom Python file you created for utility functions
 import os    # For getting port from environment variables (needed for Render)
 
 """
