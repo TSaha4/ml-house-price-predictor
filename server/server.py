@@ -1,7 +1,7 @@
 # Importing necessary modules from Flask and another Python file (util.py)
 from flask import Flask, request, jsonify, render_template  # Added render_template to serve index.html
 from flask_cors import CORS
-import util  # This is a custom Python file you created for utility functions
+import sys 
 import os    # For getting port from environment variables (needed for Render)
 
 """
@@ -14,13 +14,22 @@ jsonify	        Converts Python dictionary to JSON format for the frontend
 CORS header	    Allows your frontend (from another port or domain) to access backend
 """
 
+# Add the current directory to Python path to find util.py
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.append(current_dir)
+
+import util  # This is a custom Python file you created for utility functions
+
 # Create a Flask web application instance
+# Use absolute paths to avoid issues with relative paths on Render
+client_dir = os.path.join(os.path.dirname(current_dir), 'client')
 # '__name__' helps Flask determine the root path
 # Added static_folder and template_folder so Flask can serve HTML/JS/CSS
 app = Flask(
     __name__,
-    static_folder='../client',       # JS and CSS are in client/
-    template_folder='../client'      # index.html is in client/
+    static_folder=client_dir,        # JS and CSS are in client/
+    template_folder=client_dir       # index.html is in client/
 )
 CORS(app)  # Enables Cross-Origin requests from frontend
 
