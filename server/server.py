@@ -28,10 +28,11 @@ client_dir = os.path.join(os.path.dirname(current_dir), 'client')
 # Added static_folder and template_folder so Flask can serve HTML/JS/CSS
 app = Flask(
     __name__,
-    static_folder=client_dir,        # JS and CSS are in client/
+    static_folder=os.path.join(client_dir, 'static'),        # JS and CSS are in client/
     template_folder=client_dir       # index.html is in client/
 )
 CORS(app)  # Enables Cross-Origin requests from frontend
+
 
 # Load the trained model and data columns from saved files
 util.load_saved_artifacts()
