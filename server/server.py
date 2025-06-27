@@ -19,8 +19,8 @@ CORS header	    Allows your frontend (from another port or domain) to access bac
 # Added static_folder and template_folder so Flask can serve HTML/JS/CSS
 app = Flask(
     __name__,
-    static_folder='../client',       # JS and CSS are in client/
-    template_folder='../client'      # index.html is in client/
+    static_folder='client',       # JS and CSS are in client/
+    template_folder='client'      # index.html is in client/
 )
 CORS(app)  # Enables Cross-Origin requests from frontend
 
