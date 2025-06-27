@@ -50,12 +50,23 @@ function onClickedEstimatePrice() {
     var url = "/api/predict_home_price"; // Use relative URL for production
 
     // Send a POST request to the Flask backend
-    $.post(url, {
-        total_sqft: parseFloat(sqft.value), // Convert input to number
-        bhk: bhk,
-        bath: bathrooms,
-        location: location.value
-    }, function(data, status) {
+    fetch(url, {
+        method: "POST",  // HTTP POST method
+        headers: {
+            "Content-Type": "application/json" // Send data as JSON
+        },
+        body: JSON.stringify({
+            total_sqft: parseFloat(sqft.value), // Convert input to number
+            bhk: bhk,
+            bath: bathrooms,
+            location: location.value
+        })
+    })
+    .then(response => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        return response.json(); // Parse JSON response
+    })
+    .then(data => {
         // When response is received from backend
         if (data && data.estimated_price !== undefined) {
             // Display the predicted price in the browser
@@ -66,9 +77,18 @@ function onClickedEstimatePrice() {
         }
 
         // Log the status of the request (success/failure)
-        console.log(status);
+        console.log("Success");
+    })
+    .catch(error => {
+        // Handle network or parsing errors
+        estPrice.innerHTML = "<h2 style='color:red;'>Request failed</h2>";
+        console.error("Fetch error:", error);
+
+        // Log the status of the request (failure)
+        console.log("Failed");
     });
 }
+
 
 // This function runs automatically when the page is loaded
 function onPageLoad() {
