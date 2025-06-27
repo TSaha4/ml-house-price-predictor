@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bangalore Home Price Predictor</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Bangalore Home Price Predictor</h1>
+
+      <label for="uiSqft">Area (in Sqft)</label>
+      <input type="text" id="uiSqft" placeholder="e.g., 1000" />
+
+      <label>BHK</label>
+      <div class="radio-group" id="uiBHK">
+        <input type="radio" name="uiBHK" id="bhk1" value="1" />
+        <label for="bhk1">1</label>
+
+        <input type="radio" name="uiBHK" id="bhk2" value="2" checked />
+        <label for="bhk2">2</label>
+
+        <input type="radio" name="uiBHK" id="bhk3" value="3" />
+        <label for="bhk3">3</label>
+
+        <input type="radio" name="uiBHK" id="bhk4" value="4" />
+        <label for="bhk4">4</label>
+
+        <input type="radio" name="uiBHK" id="bhk5" value="5" />
+        <label for="bhk5">5</label>
+      </div>
+
+      <div class="radio-group" id="uiBathrooms">
+        <input type="radio" name="uiBathrooms" id="bath1" value="1" />
+        <label for="bath1">1</label>
+
+        <input type="radio" name="uiBathrooms" id="bath2" value="2" checked />
+        <label for="bath2">2</label>
+
+        <input type="radio" name="uiBathrooms" id="bath3" value="3" />
+        <label for="bath3">3</label>
+
+        <input type="radio" name="uiBathrooms" id="bath4" value="4" />
+        <label for="bath4">4</label>
+
+        <input type="radio" name="uiBathrooms" id="bath5" value="5" />
+        <label for="bath5">5</label>
+      </div>
+
+      <label for="uiLocations">Location</label>
+      <select id="uiLocations">
+        <option disabled selected>Choose a location</option>
+      </select>
+
+      <button onclick="onClickedEstimatePrice()">Estimate Price</button>
+      <div id="uiEstimatedPrice" class="result"></div>
+    </div>
+  </body>
+</html>
